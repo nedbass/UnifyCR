@@ -15,8 +15,7 @@ UnifyCR: A file system for burst buffers
    definitions  
    assumptions     
    api
-   starting
-   stopping      
+   start-stop
    interception      
 
 .. toctree::

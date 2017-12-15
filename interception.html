@@ -38,7 +38,7 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="UnifyCR 0.1 documentation" href="index.html"/>
-        <link rel="prev" title="Stopping" href="stopping.html"/> 
+        <link rel="prev" title="Starting &amp; Stopping" href="start-stop.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -100,11 +100,10 @@
 <li class="toctree-l1"><a class="reference internal" href="definitions.html">Definitions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="assumptions.html">Assumptions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="starting.html">Starting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stopping.html">Stopping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-stop.html">Starting &amp; Stopping</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Interception</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#dynamically">Dynamically</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#statically">Statically</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dynamically">Dynamically</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-use-each-method">How To Use Each Method</a></li>
 </ul>
 </li>
@@ -173,36 +172,33 @@
             
   <div class="section" id="interception">
 <h1>Interception<a class="headerlink" href="#interception" title="Permalink to this headline">¶</a></h1>
-<p>POSIX calls can be intercepted via three methods.</p>
-<div class="section" id="dynamically">
-<h2>Dynamically<a class="headerlink" href="#dynamically" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><ol class="arabic simple">
-<li><a class="reference external" href="https://github.com/LLNL/GOTCHA">GOTCHA</a> add description</li>
-<li>LD_PRELOAD add description</li>
-</ol>
-</div></blockquote>
-</div>
+<p>POSIX calls can be intercepted via two methods.</p>
 <div class="section" id="statically">
 <h2>Statically<a class="headerlink" href="#statically" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<div><ol class="arabic simple" start="3">
-<li>–wrap add description</li>
+<div><ol class="arabic simple">
+<li><dl class="first docutils">
+<dt>Using the –wrap option for I/O wrappers we support when building</dt>
+<dd>your application</dd>
+</dl>
+</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="dynamically">
+<h2>Dynamically<a class="headerlink" href="#dynamically" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ol class="arabic simple" start="2">
+<li><dl class="first docutils">
+<dt><a class="reference external" href="https://github.com/LLNL/GOTCHA">GOTCHA</a>, which is a library for</dt>
+<dd>dynamically wrapping function calls.</dd>
+</dl>
+</li>
 </ol>
 </div></blockquote>
 </div>
 <div class="section" id="how-to-use-each-method">
 <h2>How To Use Each Method<a class="headerlink" href="#how-to-use-each-method" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>GOTCHA
-- This is the default and just requires linking with unifycr in your
-- application (-lunifycr)</p>
-<p>LD_PRELOAD</p>
-<p>WRAP
-- This is not the default and requires rebuilding the unifycr library
-- with a -DUNIFYCR_PRELOAD, then adding the following flags to your application:
-- add flag example</p>
-</div></blockquote>
 </div>
 </div>
 
@@ -217,7 +213,7 @@
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="stopping.html" class="btn btn-neutral" title="Stopping" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="start-stop.html" class="btn btn-neutral" title="Starting &amp; Stopping" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

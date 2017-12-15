@@ -2,32 +2,21 @@
 Interception
 ================
 
-POSIX calls can be intercepted via three methods.
-   
----------------------------
-Dynamically
----------------------------
-        1. `GOTCHA <https://github.com/LLNL/GOTCHA>`_ add description 
-
-        2. LD_PRELOAD add description
+POSIX calls can be intercepted via two methods.
 
 ---------------------------
 Statically
 ---------------------------
-        3. --wrap add description 
- 
+        1. Using the --wrap option for I/O wrappers we support when building
+			your application
+
 ---------------------------
-How To Use Each Method 
+Dynamically
+---------------------------
+        2. `GOTCHA <https://github.com/LLNL/GOTCHA>`_, which is a library for
+			dynamically wrapping function calls.
+
+---------------------------
+How To Use Each Method
 ---------------------------
 
-        GOTCHA
-        - This is the default and just requires linking with unifycr in your 
-        - application (-lunifycr)
-
-        LD_PRELOAD    
-
-        WRAP    
-        - This is not the default and requires rebuilding the unifycr library 
-        - with a -DUNIFYCR_PRELOAD, then adding the following flags to your application: 
-        - add flag example
-                
