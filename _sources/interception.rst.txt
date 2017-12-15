@@ -7,8 +7,8 @@ POSIX calls can be intercepted via two methods.
 ---------------------------
 Statically
 ---------------------------
-        1. Using the --wrap option for I/O wrappers we support when building
-			your application
+        1. Using the --wrap when building your application. This option can be 
+		used with posix I/O wrappers we support your application
 
 ---------------------------
 Dynamically
