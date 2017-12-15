@@ -38,7 +38,7 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="UnifyCR 0.1 documentation" href="index.html"/>
-        <link rel="prev" title="Starting &amp; Stopping" href="initialization.html"/> 
+        <link rel="prev" title="Initialization" href="initialization.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -100,7 +100,7 @@
 <li class="toctree-l1"><a class="reference internal" href="definitions.html">Definitions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="assumptions.html">Assumptions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="initialization.html">Starting &amp; Stopping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="initialization.html">Initialization</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Interception</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#statically">Statically</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dynamically">Dynamically</a></li>
@@ -172,33 +172,41 @@
             
   <div class="section" id="interception">
 <h1>Interception<a class="headerlink" href="#interception" title="Permalink to this headline">¶</a></h1>
-<p>POSIX calls can be intercepted via two methods.</p>
+<p>POSIX calls can be intercepted via the methods described below.</p>
 <div class="section" id="statically">
 <h2>Statically<a class="headerlink" href="#statically" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<div><ol class="arabic simple">
+<div><ul class="simple">
 <li><dl class="first docutils">
 <dt>Using the –wrap flag when building your application. This option</dt>
-<dd>can be used with posix I/O wrappers we support your application</dd>
+<dd><ul class="first last">
+<li>can be used with posix I/O wrappers we support your application</li>
+</ul>
+</dd>
 </dl>
 </li>
-</ol>
+</ul>
 </div></blockquote>
 </div>
 <div class="section" id="dynamically">
 <h2>Dynamically<a class="headerlink" href="#dynamically" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<div><ol class="arabic simple" start="2">
+<div><ul class="simple">
 <li><dl class="first docutils">
 <dt><a class="reference external" href="https://github.com/LLNL/GOTCHA">GOTCHA</a>, which is a library for</dt>
-<dd>dynamically wrapping function calls.</dd>
+<dd><ul class="first last">
+<li>dynamically wrapping function calls.</li>
+</ul>
+</dd>
 </dl>
 </li>
-</ol>
+</ul>
 </div></blockquote>
 </div>
 <div class="section" id="how-to-use-each-method">
 <h2>How To Use Each Method<a class="headerlink" href="#how-to-use-each-method" title="Permalink to this headline">¶</a></h2>
+<p>TODO: Need to add examples on how to add the wrap flags based on the tool
+Adam added to the README build section.</p>
 </div>
 </div>
 
@@ -213,7 +221,7 @@
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="initialization.html" class="btn btn-neutral" title="Starting &amp; Stopping" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="initialization.html" class="btn btn-neutral" title="Initialization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
