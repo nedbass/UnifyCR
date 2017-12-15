@@ -7,14 +7,14 @@ POSIX calls can be intercepted via two methods.
 ---------------------------
 Statically
 ---------------------------
-        1. Using the --wrap when building your application. This option can be 
-		used with posix I/O wrappers we support your application
+        1. Using the --wrap flag when building your application. This option
+		can be used with posix I/O wrappers we support your application
 
 ---------------------------
 Dynamically
 ---------------------------
         2. `GOTCHA <https://github.com/LLNL/GOTCHA>`_, which is a library for
-			dynamically wrapping function calls.
+		dynamically wrapping function calls.
 
 ---------------------------
 How To Use Each Method
