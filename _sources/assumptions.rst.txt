@@ -2,7 +2,7 @@
 Assumptions
 ================
 
-In this section, we provide assumptions we make about the behavior of 
+In this section, we provide assumptions we make about the behavior of
 applications that use UnifyCR, and about how UnifyCR currently functions.
 
 ---------------------------
@@ -10,20 +10,20 @@ Application Behavior
 ---------------------------
     - Workload supported is globally synchronous checkpointing.
 
-    - I/O occurs in write and read phases. Files are not read and written at 
+    - I/O occurs in write and read phases. Files are not read and written at
       the same time. There is some (good) amount of time between the two phases.
-	  For example, files are written during checkpoint phases and only read 
-	  during recovery or restart.
+      For example, files are written during checkpoint phases and only read
+      during recovery or restart.
 
-    - Processes on any node can read any byte in the file (not just local 
+    - Processes on any node can read any byte in the file (not just local
       data), but the common case will be processes read only their local bytes.
 
-    - Assume general parallel I/O concurrency semantics where processes can 
-      write to the same offset concurrently. We assume the outcome of concurrent 
-      writes to the same offset or other conflicting concurrent accesses is 
-      undefined. For example, if a command in the job renames a file while the 
-      parallel application is writing to it, the outcome is undefined. It could 
-	  be a failure or not, depending on timing.
+    - Assume general parallel I/O concurrency semantics where processes can
+      write to the same offset concurrently. We assume the outcome of concurrent
+      writes to the same offset or other conflicting concurrent accesses is
+      undefined. For example, if a command in the job renames a file while the
+      parallel application is writing to it, the outcome is undefined. It could
+      be a failure or not, depending on timing.
 
 ---------------------------
 Consistency Model

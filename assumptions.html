@@ -179,28 +179,20 @@ applications that use UnifyCR, and about how UnifyCR currently functions.</p>
 <div class="section" id="application-behavior">
 <h2>Application Behavior<a class="headerlink" href="#application-behavior" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<div><ul>
-<li><p class="first">Workload supported is globally synchronous checkpointing.</p>
-</li>
-<li><p class="first">I/O occurs in write and read phases. Files are not read and written at
-the same time. There is some (good) amount of time between the two phases.</p>
-<blockquote>
-<div><p>For example, files are written during checkpoint phases and only read
-during recovery or restart.</p>
-</div></blockquote>
-</li>
-<li><p class="first">Processes on any node can read any byte in the file (not just local
-data), but the common case will be processes read only their local bytes.</p>
-</li>
-<li><p class="first">Assume general parallel I/O concurrency semantics where processes can
+<div><ul class="simple">
+<li>Workload supported is globally synchronous checkpointing.</li>
+<li>I/O occurs in write and read phases. Files are not read and written at
+the same time. There is some (good) amount of time between the two phases.
+For example, files are written during checkpoint phases and only read
+during recovery or restart.</li>
+<li>Processes on any node can read any byte in the file (not just local
+data), but the common case will be processes read only their local bytes.</li>
+<li>Assume general parallel I/O concurrency semantics where processes can
 write to the same offset concurrently. We assume the outcome of concurrent
 writes to the same offset or other conflicting concurrent accesses is
 undefined. For example, if a command in the job renames a file while the
-parallel application is writing to it, the outcome is undefined. It could</p>
-<blockquote>
-<div><p>be a failure or not, depending on timing.</p>
-</div></blockquote>
-</li>
+parallel application is writing to it, the outcome is undefined. It could
+be a failure or not, depending on timing.</li>
 </ul>
 </div></blockquote>
 </div>
