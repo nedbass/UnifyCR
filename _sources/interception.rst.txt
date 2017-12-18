@@ -1,24 +1,36 @@
-================
-Interception
-================
+==================
+Build & Intercept
+==================
 
 POSIX calls can be intercepted via the methods described below.
 
 ---------------------------
 Statically
 ---------------------------
-        - Using the --wrap flag when building your application. This option
-		- can be used with posix I/O wrappers we support your application
+
+Steps for static linking using --wrap:
+
+	- To intercept I/O calls using a static link, you must add flags to
+	- your line line. UnifyCR installs a unifycr-config script that returns
+	- those flags, e.g.,
+
+.. code-block:: Bash
+
+	mpicc -o test_write \
+		  `<unifycr>/bin/unifycr-config --pre-ld-flags` \
+		    test_write.c \
+			  `<unifycr>/bin/unifycr-config --post-ld-flags`
 
 ---------------------------
 Dynamically
 ---------------------------
-        - `GOTCHA <https://github.com/LLNL/GOTCHA>`_, which is a library for
-		- dynamically wrapping function calls.
+Steps for link using gotcha:
 
----------------------------
-How To Use Each Method
----------------------------
+	- To intercept I/O calls using gotcha, use the following syntax to link an
+    - application.
 
-TODO: Need to add examples on how to add the wrap flags based on the tool
-Adam added to the README build section.
+.. code-block:: Bash
+
+	mpicc -o test_write test_write.c \
+		-I<unifycr>/include -L<unifycy>/lib -lunifycr_gotcha \
+		-L<gotcha>/lib64 -lgotcha

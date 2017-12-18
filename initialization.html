@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>UnifyCR: A file system for burst buffers &mdash; UnifyCR 0.1 documentation</title>
+  <title>Initialization &mdash; UnifyCR 0.1 documentation</title>
   
 
   
@@ -37,8 +37,9 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="UnifyCR 0.1 documentation" href="#"/>
-        <link rel="next" title="Overview" href="overview.html"/> 
+    <link rel="top" title="UnifyCR 0.1 documentation" href="index.html"/>
+        <link rel="next" title="Build &amp; Intercept" href="interception.html"/>
+        <link rel="prev" title="API" href="api.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -57,7 +58,7 @@
           
 
           
-            <a href="#">
+            <a href="index.html">
           
 
           
@@ -95,12 +96,16 @@
             
             
               <p class="caption"><span class="caption-text">User Guide</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="definitions.html">Definitions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="assumptions.html">Assumptions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="initialization.html">Initialization</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Initialization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#initialization-example">Initialization Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stopping">Stopping</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="interception.html">Build &amp; Intercept</a></li>
 </ul>
 
@@ -116,7 +121,7 @@
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">UnifyCR</a>
+          <a href="index.html">UnifyCR</a>
         
       </nav>
 
@@ -144,15 +149,15 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="#">Docs</a> &raquo;</li>
+      <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>UnifyCR: A file system for burst buffers</li>
+      <li>Initialization</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/initialization.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -165,56 +170,59 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="unifycr-a-file-system-for-burst-buffers">
-<h1>UnifyCR: A file system for burst buffers<a class="headerlink" href="#unifycr-a-file-system-for-burst-buffers" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">User Guide</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="overview.html#high-level-design">High Level Design</a></li>
+  <div class="section" id="initialization">
+<h1>Initialization<a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h1>
+<p>In this section, we describe the mechanisms for starting and stopping UnifyCR in
+a user’s allocation. The important features to consider are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Initialization of UnifyCR file system instance across compute nodes</li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="definitions.html">Definitions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="definitions.html#job">Job</a></li>
-<li class="toctree-l2"><a class="reference internal" href="definitions.html#run-or-job-step">Run or Job Step</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="assumptions.html">Assumptions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="assumptions.html#application-behavior">Application Behavior</a></li>
-<li class="toctree-l2"><a class="reference internal" href="assumptions.html#consistency-model">Consistency Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="assumptions.html#file-system-behavior">File System Behavior</a></li>
-<li class="toctree-l2"><a class="reference internal" href="assumptions.html#system-characteristics">System Characteristics</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api.html#mounting">Mounting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api.html#unmounting">Unmounting</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="initialization.html">Initialization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="initialization.html#initialization-example">Initialization Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="initialization.html#stopping">Stopping</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="interception.html">Build &amp; Intercept</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="interception.html#statically">Statically</a></li>
-<li class="toctree-l2"><a class="reference internal" href="interception.html#dynamically">Dynamically</a></li>
-</ul>
-</li>
-</ul>
+</div></blockquote>
+<div class="section" id="initialization-example">
+<h2>Initialization Example<a class="headerlink" href="#initialization-example" title="Permalink to this headline">¶</a></h2>
+<p>First, we need to start the UnifyCR daemon on the nodes in your allocation.</p>
+<div class="highlight-Bash"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">UNIFYCR_META_SERVER_RATIO</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">export</span> <span class="nv">UNIFYCR_META_DB_NAME</span><span class="o">=</span>unifycr_db
+<span class="nb">export</span> <span class="nv">UNIFYCR_CHUNK_MEM</span><span class="o">=</span><span class="m">0</span>
+
+<span class="nv">NODES</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">PROCS</span><span class="o">=</span><span class="m">1</span>
+
+mpirun -nodes <span class="si">${</span><span class="nv">NODES</span><span class="si">}</span> -np <span class="si">${</span><span class="nv">PROCS</span><span class="si">}</span> ./unifycrd <span class="p">&amp;</span>
+</pre></div>
 </div>
-<div class="toctree-wrapper compound">
+<p>The example above will start the UnifyCR daemon on the number of nodes specified
+in the NODES variable.</p>
+<p>Next, we can start run our application with UnifyCR in the following manner:</p>
+<div class="highlight-Bash"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">UNIFYCR_USE_SPILLOVER</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">APP_PATH</span><span class="o">=</span>/path/to/my/app
+
+<span class="nv">NODES</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">PROCS</span><span class="o">=</span><span class="m">1</span>
+
+mpirun -nodes <span class="si">${</span><span class="nv">NODES</span><span class="si">}</span> -np <span class="si">${</span><span class="nv">PROCS</span><span class="si">}</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/my_app
+</pre></div>
 </div>
-<div class="toctree-wrapper compound">
+<p>The APP_PATH variable is the directory where your application lives.</p>
+<p>So, overall the steps taken to run an application with UnifyCR include:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Allocate Nodes</li>
+<li>Update any desired configuration variables in the bash scripts</li>
+<li>Start the UnifyCR server daemons on each node</li>
+<li>Run your application with UnifyCR</li>
+</ol>
+</div></blockquote>
 </div>
+<div class="section" id="stopping">
+<h2>Stopping<a class="headerlink" href="#stopping" title="Permalink to this headline">¶</a></h2>
+<p>Currently, the UnifyCR server daemon runs throughout a user’s job allocation
+after it is started. Even if the UnifyCR daemon is running in a user’s job the
+UnifyCR file system will only be utilized if the user has mounted a path for
+UnifyCR to intercept. The UnifyCR daemon is stopped when the user’s allocation
+is exited.</p>
 </div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
-</ul>
 </div>
 
 
@@ -227,8 +235,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="overview.html" class="btn btn-neutral float-right" title="Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="interception.html" class="btn btn-neutral float-right" title="Build &amp; Intercept" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
+      
+        <a href="api.html" class="btn btn-neutral" title="API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
