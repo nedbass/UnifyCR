@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Build &amp; Intercept &mdash; UnifyCR 0.1 documentation</title>
+  <title>Build &amp; I/O Interception &mdash; UnifyCR 0.1 documentation</title>
   
 
   
@@ -101,7 +101,7 @@
 <li class="toctree-l1"><a class="reference internal" href="assumptions.html">Assumptions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="initialization.html">Initialization</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Build &amp; Intercept</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Build &amp; I/O Interception</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#statically">Statically</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dynamically">Dynamically</a></li>
 </ul>
@@ -150,7 +150,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Build &amp; Intercept</li>
+      <li>Build &amp; I/O Interception</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -169,19 +169,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="build-intercept">
-<h1>Build &amp; Intercept<a class="headerlink" href="#build-intercept" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="build-i-o-interception">
+<h1>Build &amp; I/O Interception<a class="headerlink" href="#build-i-o-interception" title="Permalink to this headline">¶</a></h1>
 <p>POSIX calls can be intercepted via the methods described below.</p>
 <div class="section" id="statically">
 <h2>Statically<a class="headerlink" href="#statically" title="Permalink to this headline">¶</a></h2>
 <p>Steps for static linking using –wrap:</p>
-<blockquote>
-<div><ul class="simple">
-<li>To intercept I/O calls using a static link, you must add flags to</li>
-<li>your line line. UnifyCR installs a unifycr-config script that returns</li>
-<li>those flags, e.g.,</li>
-</ul>
-</div></blockquote>
+<p>To intercept I/O calls using a static link, you must add flags to your link
+line. UnifyCR installs a unifycr-config script that returns those flags, e.g.,</p>
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>mpicc -o test_write <span class="se">\</span>
           <span class="sb">`</span>&lt;unifycr&gt;/bin/unifycr-config --pre-ld-flags<span class="sb">`</span> <span class="se">\</span>
             test_write.c <span class="se">\</span>
@@ -191,17 +186,9 @@
 </div>
 <div class="section" id="dynamically">
 <h2>Dynamically<a class="headerlink" href="#dynamically" title="Permalink to this headline">¶</a></h2>
-<p>Steps for link using gotcha:</p>
-<blockquote>
-<div><blockquote>
-<div><ul class="simple">
-<li>To intercept I/O calls using gotcha, use the following syntax to link an</li>
-</ul>
-</div></blockquote>
-<ul class="simple">
-<li>application.</li>
-</ul>
-</div></blockquote>
+<p>Steps for dynamic linking using gotcha:</p>
+<p>To intercept I/O calls using gotcha, use the following syntax to link an
+application.</p>
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>mpicc -o test_write test_write.c <span class="se">\</span>
         -I&lt;unifycr&gt;/include -L&lt;unifycy&gt;/lib -lunifycr_gotcha <span class="se">\</span>
         -L&lt;gotcha&gt;/lib64 -lgotcha

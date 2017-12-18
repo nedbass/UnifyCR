@@ -1,6 +1,6 @@
-==================
-Build & Intercept
-==================
+========================
+Build & I/O Interception
+========================
 
 POSIX calls can be intercepted via the methods described below.
 
@@ -10,9 +10,8 @@ Statically
 
 Steps for static linking using --wrap:
 
-	- To intercept I/O calls using a static link, you must add flags to
-	- your line line. UnifyCR installs a unifycr-config script that returns
-	- those flags, e.g.,
+To intercept I/O calls using a static link, you must add flags to your link
+line. UnifyCR installs a unifycr-config script that returns those flags, e.g.,
 
 .. code-block:: Bash
 
@@ -24,10 +23,11 @@ Steps for static linking using --wrap:
 ---------------------------
 Dynamically
 ---------------------------
-Steps for link using gotcha:
 
-	- To intercept I/O calls using gotcha, use the following syntax to link an
-    - application.
+Steps for dynamic linking using gotcha:
+
+To intercept I/O calls using gotcha, use the following syntax to link an
+application.
 
 .. code-block:: Bash
 
