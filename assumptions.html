@@ -38,7 +38,7 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="UnifyCR 0.1 documentation" href="index.html"/>
-        <link rel="next" title="API" href="api.html"/>
+        <link rel="next" title="Build &amp; I/O Interception" href="build-intercept.html"/>
         <link rel="prev" title="Definitions" href="definitions.html"/> 
 
   
@@ -106,9 +106,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#system-characteristics">System Characteristics</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="initialization.html">Initialization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="interception.html">Build &amp; I/O Interception</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build-intercept.html">Build &amp; I/O Interception</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-mount.html">Mounting UnifyCR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-stop.html">Starting &amp; Stopping</a></li>
 </ul>
 
             
@@ -179,20 +179,28 @@ applications that use UnifyCR, and about how UnifyCR currently functions.</p>
 <div class="section" id="application-behavior">
 <h2>Application Behavior<a class="headerlink" href="#application-behavior" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<div><ul class="simple">
-<li>Workload supported is globally synchronous checkpointing.</li>
-<li>I/O occurs in write and read phases. Files are not read and written at</li>
-<li>the same time. There is some (good) amount of time between the two phases. For</li>
-<li>example, files are written during checkpoint phases and only read during</li>
-<li>recovery or restart.</li>
-<li>Processes on any node can read any byte in the file (not just local</li>
-<li>data), but the common case will be processes read only their local bytes.</li>
-<li>Assume general parallel I/O concurrency semantics where processes can</li>
-<li>write to the same offset concurrently. We assume the outcome of concurrent</li>
-<li>writes to the same offset or other conflicting concurrent accesses is</li>
-<li>undefined. For example, if a command in the job renames a file while the</li>
-<li>parallel application is writing to it, the outcome is undefined. It could be a</li>
-<li>failure or not, depending on timing.</li>
+<div><ul>
+<li><p class="first">Workload supported is globally synchronous checkpointing.</p>
+</li>
+<li><p class="first">I/O occurs in write and read phases. Files are not read and written at
+the same time. There is some (good) amount of time between the two phases.</p>
+<blockquote>
+<div><p>For example, files are written during checkpoint phases and only read
+during recovery or restart.</p>
+</div></blockquote>
+</li>
+<li><p class="first">Processes on any node can read any byte in the file (not just local
+data), but the common case will be processes read only their local bytes.</p>
+</li>
+<li><p class="first">Assume general parallel I/O concurrency semantics where processes can
+write to the same offset concurrently. We assume the outcome of concurrent
+writes to the same offset or other conflicting concurrent accesses is
+undefined. For example, if a command in the job renames a file while the
+parallel application is writing to it, the outcome is undefined. It could</p>
+<blockquote>
+<div><p>be a failure or not, depending on timing.</p>
+</div></blockquote>
+</li>
 </ul>
 </div></blockquote>
 </div>
@@ -225,21 +233,22 @@ Since file contents cannot change after lamination,
 aggressive caching may be used during the read-only phase with minimal locking.
 Since a file may be lost on application failure unless laminated,
 data redundancy schemes can be delayed until lamination.</p>
-<dl class="docutils">
-<dt>Behavior before lamination:</dt>
-<dd><ul class="first last simple">
+<p>Behavior before lamination:</p>
+<blockquote>
+<div><ul class="simple">
 <li>open/close: A process may open/close a file multiple times.</li>
-<li>write: A process may write to any part of a file.  If two processes write</li>
-<li>to the same location, the value is undefined.</li>
-<li>read: A process may read bytes it has written.  Reading other bytes is</li>
-<li>invalid.</li>
+<li>write: A process may write to any part of a file. If two processes write
+to the same location, the value is undefined.</li>
+<li>read: A process may read bytes it has written. Reading other bytes is
+invalid.</li>
 <li>rename: A process may rename a file.</li>
 <li>truncate: A process may truncate a file.</li>
 <li>unlink: A process may delete a file.</li>
 </ul>
-</dd>
-<dt>Behavior after lamination:</dt>
-<dd><ul class="first last simple">
+</div></blockquote>
+<p>Behavior after lamination:</p>
+<blockquote>
+<div><ul class="simple">
 <li>open/close: A process may open/close a file multiple times.</li>
 <li>write: All writes are invalid.</li>
 <li>read: A process may read any byte in the file.</li>
@@ -247,26 +256,25 @@ data redundancy schemes can be delayed until lamination.</p>
 <li>truncate: Truncation is invalid (considered to be a write operation).</li>
 <li>unlink: A process may delete a file.</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </div>
 <div class="section" id="file-system-behavior">
 <h2>File System Behavior<a class="headerlink" href="#file-system-behavior" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
-<li>The file system exists on node local storage only and is not persisted to</li>
-<li>stable storage like a parallel file system (PFS). Can be coupled with</li>
-<li>SymphonyFS or high level I/O or checkpoint library (VeloC) to move data to PFS</li>
-<li>periodically, or data can be moved manually</li>
-<li>Can be used with checkpointing libraries (VeloC) or I/O libraries to</li>
-<li>support shared files on burst buffers</li>
-<li>File system starts empty at job start. User job must populate the file</li>
-<li>system.</li>
-<li>Shared file system namespace across all compute nodes in a job, even if</li>
-<li>an application process is not running on all compute nodes</li>
+<li>The file system exists on node local storage only and is not persisted to
+stable storage like a parallel file system (PFS). Can be coupled with</li>
+<li>SymphonyFS or high level I/O or checkpoint library (VeloC) to move data to
+PFS periodically, or data can be moved manually</li>
+<li>Can be used with checkpointing libraries (VeloC) or I/O libraries to
+support shared files on burst buffers</li>
+<li>File system starts empty at job start. User job must populate the file
+system.</li>
+<li>Shared file system namespace across all compute nodes in a job, even if
+an application process is not running on all compute nodes</li>
 <li>Survives application termination and/or relaunch within a job</li>
-<li>Will transparently intercept system level I/O calls of applications and</li>
-<li>I/O libraries</li>
+<li>Will transparently intercept system level I/O calls of applications and
+I/O libraries</li>
 </ul>
 </div></blockquote>
 </div>
@@ -274,10 +282,10 @@ data redundancy schemes can be delayed until lamination.</p>
 <h2>System Characteristics<a class="headerlink" href="#system-characteristics" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
-<li>There is some storage available for storing file data on a compute node,</li>
-<li>e.g. SSD or RAM disk</li>
-<li>We can run user-level daemon processes on compute nodes concurrently with</li>
-<li>a user application</li>
+<li>There is some storage available for storing file data on a compute node,
+e.g. SSD or RAM disk</li>
+<li>We can run user-level daemon processes on compute nodes concurrently with
+a user application</li>
 </ul>
 </div></blockquote>
 </div>
@@ -293,7 +301,7 @@ data redundancy schemes can be delayed until lamination.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="api.html" class="btn btn-neutral float-right" title="API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="build-intercept.html" class="btn btn-neutral float-right" title="Build &amp; I/O Interception" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="definitions.html" class="btn btn-neutral" title="Definitions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

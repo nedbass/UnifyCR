@@ -38,7 +38,8 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="UnifyCR 0.1 documentation" href="index.html"/>
-        <link rel="prev" title="Initialization" href="initialization.html"/> 
+        <link rel="next" title="Mounting UnifyCR" href="api-mount.html"/>
+        <link rel="prev" title="Assumptions" href="assumptions.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -99,11 +100,8 @@
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="definitions.html">Definitions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="assumptions.html">Assumptions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="initialization.html">Initialization</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Build &amp; I/O Interception</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#build">Build</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#how-to-build-unifycr"><strong>How to build UnifyCR</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-build-unifycr">How to build UnifyCR</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#building-with-spack"><strong>Building with Spack</strong></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#building-without-spack"><strong>Building without Spack</strong></a></li>
 </ul>
@@ -115,6 +113,8 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="api-mount.html">Mounting UnifyCR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start-stop.html">Starting &amp; Stopping</a></li>
 </ul>
 
             
@@ -165,7 +165,7 @@
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/interception.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/build-intercept.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -180,13 +180,10 @@
             
   <div class="section" id="build-i-o-interception">
 <h1>Build &amp; I/O Interception<a class="headerlink" href="#build-i-o-interception" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="build">
-<h2>Build<a class="headerlink" href="#build" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="how-to-build-unifycr">
-<h3><strong>How to build UnifyCR</strong><a class="headerlink" href="#how-to-build-unifycr" title="Permalink to this headline">¶</a></h3>
+<h2>How to build UnifyCR<a class="headerlink" href="#how-to-build-unifycr" title="Permalink to this headline">¶</a></h2>
 <p>Download the latest UnifyCR release from the <a class="reference external" href="https://github.com/LLNL/UnifyCR/releases">Releases</a> page. UnifyCR requires MPI,
 LevelDB, and GOTCHA.</p>
-</div>
 <div class="section" id="building-with-spack">
 <h3><strong>Building with Spack</strong><a class="headerlink" href="#building-with-spack" title="Permalink to this headline">¶</a></h3>
 <p>Install leveldb and gotcha and set up your build environment, we recommend using
@@ -215,7 +212,7 @@ make install
 <a class="reference external" href="https://github.com/LLNL/GOTCHA">GOTCHA</a></p>
 <p>Then to build with UnifyCR:</p>
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>./configure --prefix<span class="o">=</span>/path/to/install --with-gotcha<span class="o">=</span>/path/to/gotcha
---enable-debug
+        --enable-debug
 make
 make install
 </pre></div>
@@ -261,8 +258,10 @@ application.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="api-mount.html" class="btn btn-neutral float-right" title="Mounting UnifyCR" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="initialization.html" class="btn btn-neutral" title="Initialization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="assumptions.html" class="btn btn-neutral" title="Assumptions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -3,11 +3,8 @@ Build & I/O Interception
 ========================
 
 ---------------------------
-Build
+How to build UnifyCR
 ---------------------------
-
-**How to build UnifyCR**
-***************************
 
 Download the latest UnifyCR release from the `Releases
 <https://github.com/LLNL/UnifyCR/releases>`_ page. UnifyCR requires MPI,
@@ -50,7 +47,7 @@ Then to build with UnifyCR:
 .. code-block:: Bash
 
 	./configure --prefix=/path/to/install --with-gotcha=/path/to/gotcha
-	--enable-debug
+		--enable-debug
 	make
 	make install
 
