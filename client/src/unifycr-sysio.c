@@ -828,8 +828,12 @@ ssize_t UNIFYCR_WRAP(write)(int fd, const void *buf, size_t count)
                 return (ssize_t) (-1);
             }
         } else {
+            ssize_t rc;
+
             fd += unifycr_fd_limit;
-            pwrite(fd, buf, count, filedesc->pos);
+            rc = pwrite(fd, buf, count, filedesc->pos);
+            if (rc < 0)
+                perror("pwrite failed");
         }
         /* update file position */
         filedesc->pos += count;
