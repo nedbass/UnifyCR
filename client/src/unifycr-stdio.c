@@ -1407,26 +1407,6 @@ int UNIFYCR_WRAP(fprintf)(FILE *stream, const char *format, ...)
     }
 }
 
-int UNIFYCR_WRAP(fscanf)(FILE *stream, const char *format, ...)
-{
-    /* check whether we should intercept this stream */
-    if (unifycr_intercept_stream(stream)) {
-        /* delegate work to vfscanf */
-        va_list args;
-        va_start(args, format);
-        int ret = UNIFYCR_WRAP(vfscanf)(stream, format, args);
-        va_end(args);
-        return ret;
-    } else {
-        va_list args;
-        va_start(args, format);
-        MAP_OR_FAIL(vfscanf);
-        int ret = UNIFYCR_REAL(vfscanf)(stream, format, args);
-        va_end(args);
-        return ret;
-    }
-}
-
 /* need to declare this before calling it */
 static int __svfscanf(unifycr_stream_t *fp, const char *fmt0, va_list ap);
 
@@ -1449,6 +1429,25 @@ int UNIFYCR_WRAP(vfscanf)(FILE *stream, const char *format, va_list ap)
     }
 }
 
+int UNIFYCR_WRAP(fscanf)(FILE *stream, const char *format, ...)
+{
+    /* check whether we should intercept this stream */
+    if (unifycr_intercept_stream(stream)) {
+        /* delegate work to vfscanf */
+        va_list args;
+        va_start(args, format);
+        int ret = UNIFYCR_WRAP(vfscanf)(stream, format, args);
+        va_end(args);
+        return ret;
+    } else {
+        va_list args;
+        va_start(args, format);
+        MAP_OR_FAIL(vfscanf);
+        int ret = UNIFYCR_REAL(vfscanf)(stream, format, args);
+        va_end(args);
+        return ret;
+    }
+}
 /* TODO: return error if new position overflows long */
 int UNIFYCR_WRAP(fseek)(FILE *stream, long offset, int whence)
 {
